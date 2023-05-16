@@ -35,10 +35,12 @@
     @foreach (var item in Model.Where(x => x.Estado == "Iniciado"))
     {
         <div class="card-body">
+                        <div class="bg-light text-black rounded">
             <h5 class="card-title">@item.Nombre</h5>
             <p class="card-text">@item.Descripcion</p>
             <p class="card-text">Fecha de Creación: @item.FechaCreacion Fecha de Termino: @item.FechaLimite</p>
         </div>
+                    </div>
 
     }
 </div>
