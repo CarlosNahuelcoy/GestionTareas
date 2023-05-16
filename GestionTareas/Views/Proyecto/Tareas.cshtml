@@ -1,0 +1,62 @@
+﻿@model IEnumerable<GestionTareas.Models.Tarea>
+@{
+    var errorMessage = TempData["ErrorMessage"] as string;
+}
+
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <div class="alert alert-danger">
+        @errorMessage
+    </div>
+}
+<h1>@Model.First().IdProyectoNavigation.Nombre</h1>
+<div class="container">
+    <div class="row align-items-start">
+<div class="col-4">
+    <div class="card " style="max-width: 18rem;">
+                <div class="card-header bg-warning text-white">@Model.First().Estado</div>
+        @foreach (var item in Model.Where(x => x.Estado == "Comenzando"))
+        {
+            <div class="card-body">
+                <div class="bg-light text-black rounded">
+                <h5 class="card-title">@item.Nombre</h5>
+                <p class="card-text">@item.Descripcion</p>
+                <p class="card-text">Fecha de Creación: @item.FechaCreacion Fecha de Termino: @item.FechaLimite</p>
+            </div>
+          </div>
+
+        }
+    </div>
+    
+</div>
+<div class="col-4">
+<div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+    <div class="card-header">Iniciado</div>
+    @foreach (var item in Model.Where(x => x.Estado == "Iniciado"))
+    {
+        <div class="card-body">
+            <h5 class="card-title">@item.Nombre</h5>
+            <p class="card-text">@item.Descripcion</p>
+            <p class="card-text">Fecha de Creación: @item.FechaCreacion Fecha de Termino: @item.FechaLimite</p>
+        </div>
+
+    }
+</div>
+</div>
+        <div class="col-4">
+            <div class="card " style="max-width: 18rem;">
+                <div class="card-header bg-success text-white">Finalizado</div>
+                @foreach (var item in Model.Where(x => x.Estado == "Finalizado"))
+                {
+                    <div class="card-body">
+                        <div class="bg-light text-black rounded">
+                        <h5 class="card-title">@item.Nombre</h5>
+                        <p class="card-text">@item.Descripcion</p>
+                        <p class="card-text">Fecha de Creación: @item.FechaCreacion Fecha de Termino: @item.FechaLimite</p>
+                    </div>
+                    </div>
+                }
+            </div>
+        </div>
+</div>
+</div>

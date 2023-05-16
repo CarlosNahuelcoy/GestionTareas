@@ -1,0 +1,48 @@
+﻿@model IEnumerable<GestionTareas.Models.Proyecto>
+@{
+    var errorMessage = TempData["ErrorMessage"] as string;
+}
+
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <div class="alert alert-danger">
+        @errorMessage
+    </div>
+}
+
+<h1>Lista de Proyectos</h1>
+<hr />
+<div class="text-end">
+    <a asp-action="Create" class="btn btn-outline-primary">Crear</a>
+</div>
+<table class="table table-bordered">
+    <thead class="bg-dark text-white">
+        <tr>
+            <th>Código</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Fecha Inicio</th> 
+            <th>Fecha Fin Prevista</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Nombre</td>
+                <td>@item.Descripcion</td>
+                <td>@item.FechaInicio</td>
+                <td>@item.FechaFinPrevista</td>
+                <td>
+
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="text-dark fs-4"><i class="bi bi-pencil"></i></a>
+                    <a asp-action="Tareas" asp-route-id="@item.Id" class="text-dark fs-4"><i class="bi bi-journal-check"></i></a>
+                    <a data-delete-url="@Url.Action("Delete", new { id = item.Id })" class="text-danger fs-4 c-pointer eliminar-registro"><i class="bi bi-trash"></i></a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
