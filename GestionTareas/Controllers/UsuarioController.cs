@@ -75,7 +75,7 @@ namespace GestionTareas.Controllers
                 }
                 else
                 {
-                    var existe = db.Usuarios.FirstOrDefault(x => x.Nombre == usuario.Nombre);
+                    var existe = db.Usuarios.FirstOrDefault(x => x.Nombre == usuario.Nombre  && x.Id!=usuario.Id);
                     if (existe == null)
                     {
                         db.Update(usuario);

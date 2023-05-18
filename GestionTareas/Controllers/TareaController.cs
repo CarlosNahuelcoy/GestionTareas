@@ -27,7 +27,8 @@ namespace GestionTareas.Controllers
                 if (tarea.FechaLimite < tarea.FechaCreacion)
                 {
                     ModelState.AddModelError("FechaLimite", "La fecha límite debe ser mayor a la fecha de creación");
-                    return View();
+                    ViewData["IdProyecto"] = new SelectList(db.Proyectos, "Id", "Nombre", tarea.IdProyecto);
+                    return View(tarea);
                 }
                 else
                 {
